@@ -1,0 +1,39 @@
+<idea-plugin version="2">
+    <id>com.your.company.unique.plugin.id</id>
+    <name>DuoHao Support</name>
+    <version>1.0</version>
+    <vendor email="fuwenming1990@126.com" url="https://github.com/wynn5a"></vendor>
+
+    <description><![CDATA[
+      A simple code generator for IntelliJ IDEA users.<br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+     initialization version
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="141.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <group id="DuoHaoSupport.Menu" text="_DuoHaoSupport" description="DuoHao Support">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action id="DuoHaoSupport.CodeGeneratorAction"
+                    class="io.github.wynn5a.dhxd.CodeGeneratorAction"
+                    text="_Domain Generator" description="Domain Generator">
+            </action>
+        </group>
+    </actions>
+
+</idea-plugin>
