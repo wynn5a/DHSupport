@@ -59,6 +59,7 @@ object GenerateUtils {
 
     private fun writeToFile(out: StringWriter, destPath: String) {
         val result = out.toString()
+        print(result)
         val formatted = Formatter().formatSource(result)
         FileUtil.writeToFile(File(destPath), formatted)
     }
@@ -88,16 +89,8 @@ object GenerateUtils {
         vmContext.put(GeneratorConstance.TABLE_COMMENTS, tableComments!!)
 
         val pkFields = getPkFields(tableName, connection)
-        var pkFieldString: String = ""
-        for ((index, pkField) in pkFields.withIndex()) {
-            val string = "\"${pkField.toLowerCase()}\""
-            if (index == 0) {
-                pkFieldString = string
-            } else {
-                pkFieldString = "$pkFieldString, $string"
-            }
-        }
-        vmContext.put(GeneratorConstance.PK_FIELDS_STRING, pkFieldString)
+        pkFields.map { s->s.toLowerCase() }
+        vmContext.put(GeneratorConstance.PK_FIELDS_STRING, pkFields)
 
         val columnProperties = getColumnProperties(tableName, connection)
         val columns = ArrayList<Column>(columnProperties.size)
@@ -157,7 +150,7 @@ object GenerateUtils {
             val type = result.getString("DATA_TYPE")
             val nullable = result.getString("NULLABLE")
             val length = result.getString("DATA_LENGTH")
-            val comment = result.getString("COMMENTS")
+            val comment = result.getString("COMMENTS")?:""
             val property = ColumnProperty(name, toJavaType(type), comment, toInt(length), toBoolean(nullable))
             columnProperties.add(property)
         }

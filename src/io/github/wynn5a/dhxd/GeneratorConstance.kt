@@ -8,7 +8,7 @@ object GeneratorConstance {
     val DATE = "date"
     val CLASS_NAME = "className"
     val TABLE_NAME = "tableName"
-    val PK_FIELDS_STRING = "pkFieldsString"
+    val PK_FIELDS_STRING = "pkFields"
     val COLUMNS = "columns"
     val COLUMN_TYPE = "type"
     val COLUMN_COMMENT = "comment"
