@@ -90,10 +90,11 @@ object GenerateUtils {
         val pkFields = getPkFields(tableName, connection)
         var pkFieldString: String = ""
         for ((index, pkField) in pkFields.withIndex()) {
+            val string = "\"${pkField.toLowerCase()}\""
             if (index == 0) {
-                pkFieldString = pkField
+                pkFieldString = string
             } else {
-                pkFieldString = "$pkFieldString, $pkField"
+                pkFieldString = "$pkFieldString, $string"
             }
         }
         vmContext.put(GeneratorConstance.PK_FIELDS_STRING, pkFieldString)
