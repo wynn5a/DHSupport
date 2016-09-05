@@ -88,8 +88,8 @@ object GenerateUtils {
         val tableComments = getTableComments(tableName, connection)
         vmContext.put(GeneratorConstance.TABLE_COMMENTS, tableComments?:"")
 
-        val pkFields = getPkFields(tableName, connection)
-        pkFields.map { s->s.toLowerCase() }
+        var pkFields = getPkFields(tableName, connection)
+        pkFields = pkFields.map { s->s.toLowerCase() }
         vmContext.put(GeneratorConstance.PK_FIELDS_STRING, pkFields)
 
         val columnProperties = getColumnProperties(tableName, connection)
