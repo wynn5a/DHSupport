@@ -86,7 +86,7 @@ object GenerateUtils {
         vmContext.put(GeneratorConstance.CLASS_NAME, tableName.uppercaseUnderscoreToCamel())
 
         val tableComments = getTableComments(tableName, connection)
-        vmContext.put(GeneratorConstance.TABLE_COMMENTS, tableComments!!)
+        vmContext.put(GeneratorConstance.TABLE_COMMENTS, tableComments?:"")
 
         val pkFields = getPkFields(tableName, connection)
         pkFields.map { s->s.toLowerCase() }
